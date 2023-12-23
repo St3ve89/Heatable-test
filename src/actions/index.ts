@@ -29,11 +29,12 @@ export const fetchPokemons = async ({
       )
     );
 
-    return { pokemons: pokemons, nextUrl: next };
+    return { pokemons, nextUrl: next };
   }
   try {
     const pokemonResponse = await fetchPokemonByNameOrId(query);
-    return { pokemons: [pokemonResponse], nextUrl: null };
+    const pokemons = pokemonResponse ? [pokemonResponse] : [];
+    return { pokemons, nextUrl: null };
   } catch (error) {
     console.error(`Error fetching details for pokemon ${query}:`, error);
     return { pokemons: [], nextUrl: null };

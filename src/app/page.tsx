@@ -29,7 +29,7 @@ export default async function Home({ searchParams }: HomeProps) {
       <div className="p-6 md:px-10 lg:px-40">
         <div className="flex flex-col items-center space-y-4 max-w-max mx-auto">
           <SearchBar search={search} />
-          <Suspense fallback={<Loader />}>
+          <Suspense fallback={<Loader />} key={search}>
             <PokemonList query={search} />
           </Suspense>
           {!search && <LoadMore />}

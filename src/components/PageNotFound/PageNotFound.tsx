@@ -19,9 +19,9 @@ export default function PageNotFound() {
           priority
         />
 
-        <Link href="/" aria-label="Go to Home">
+        <a href="/" aria-label="Go to Home">
           <Button>Go to Home</Button>
-        </Link>
+        </a>
       </div>
     </>
   );

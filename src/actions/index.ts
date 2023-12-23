@@ -15,8 +15,6 @@ export const fetchPokemons = async ({
     const response = await fetch(endpoint);
     const { results, next } = await response.json();
 
-    console.log('next', next);
-
     const pokemons = await Promise.all(
       results.map(
         async ({ name }: { name: string }): Promise<Pokemon | null> => {

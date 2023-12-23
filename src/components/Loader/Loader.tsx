@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function Loader() {
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="flex flex-col items-center  h-screen">
       <Image
         src={'/images/loading.gif'}
         width={300}

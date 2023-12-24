@@ -21,8 +21,6 @@ export default async function PokemonDetailPage({
     pokemon?.sprites.front_default ||
     '/images/placeholder.png';
 
-  console.log('imageUrl:', imageUrl);
-  console.log('imageUrl:', pokemon?.sprites);
   let background;
 
   if (!pokemon) {

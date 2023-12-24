@@ -20,9 +20,9 @@ export default function PokemonItem({ pokemon }: PokemonItemProps) {
             <Image
               src={imageUrl}
               alt={`Image of ${pokemon.name}`}
-              fill
+              width={156}
+              height={156}
               className="object-cover"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
         )}

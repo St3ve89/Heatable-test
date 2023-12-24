@@ -50,25 +50,26 @@ export default function SearchBar({ search }: SearchBarProps) {
     }
   };
   return (
-    <div className="flex items-center space-x-2 max-w-max">
-      <input
-        type="text"
-        spellCheck="false"
-        placeholder="Search by name or number"
-        autoComplete="off"
-        value={text}
-        onKeyDown={handleInputKeyDown}
-        onChange={handleInputChange}
-        className="flex-1 max-w-full p-2 bg-opacity-30 bg-gray-500 border border-gray-300 rounded-full text-sm text-gray-600 outline-none"
-      />
-
-      <button
-        type="button"
-        className="p-2 bg-opacity-30 bg-gray-500 border border-gray-300 rounded-full transition duration-300 hover:bg-opacity-60"
-        onClick={handleButtonClick}
-      >
-        🔍
-      </button>
+    <div className="flex flex-col items-center space-x-2 max-w-max">
+      <div className="flex items-center space-x-2 max-w-max">
+        <input
+          type="text"
+          spellCheck="false"
+          placeholder="Search by name or number"
+          autoComplete="off"
+          value={text}
+          onKeyDown={handleInputKeyDown}
+          onChange={handleInputChange}
+          className="flex-1 max-w-full p-2 bg-opacity-30 bg-gray-500 border border-gray-300 rounded-full text-sm text-gray-600 outline-none"
+        />
+        <button
+          type="button"
+          className="p-2 m-2 bg-opacity-30 bg-gray-500 border border-gray-300 rounded-full transition duration-300 hover:bg-opacity-60"
+          onClick={handleButtonClick}
+        >
+          🔍
+        </button>
+      </div>
       {search && <Button onClick={handleBackClick}>Go back to all</Button>}
     </div>
   );

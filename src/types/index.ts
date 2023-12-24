@@ -14,6 +14,8 @@ export interface Pokemon {
         front_default: string;
       };
     };
+
+    front_default: string;
   };
   abilities: Ability[];
   stats: Stat[];

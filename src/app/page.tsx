@@ -19,7 +19,7 @@ export default async function Home({ searchParams }: HomeProps) {
 
   return (
     <div>
-      <div className="flex justify-center items-start p-8 bg-[url('/images/bg-title.png')] bg-contain bg-center bg-repeat-x sm:p-4">
+      <div className="flex justify-center items-start bg-[url('/images/bg-title.png')] bg-contain bg-center bg-repeat-x sm:p-4">
         <h1
           className={`text-center text-5xl font-bold text-[#fbc418] ${pokemonFont.className} title`}
         >

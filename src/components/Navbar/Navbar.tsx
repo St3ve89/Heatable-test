@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
 export default function Navbar() {
   return (
@@ -12,7 +11,9 @@ export default function Navbar() {
                 src="/images/pokedex.png"
                 width={160}
                 height={60}
+                className="h-auto w-full"
                 alt="Pokédex logo"
+                priority
               />
             </div>
           </a>

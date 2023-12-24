@@ -23,14 +23,22 @@ export default function PokemonNavigation({
   };
 
   return (
-    <div className="flex flex-col sm:flex-row justify-between items-center w-full p-6 md:px-10 lg:px-40 ">
-      <Link href={`/pokemon/${getPreviousId()}`}>
-        <Button disabled={currentId === 1}>Previous</Button>
-      </Link>
-
-      <Link href={`/pokemon/${getNextId()}`}>
-        <Button disabled={currentId === maxId}>Next</Button>
-      </Link>
+    <div className="flex  justify-between items-center w-full p-4 md:px-6 lg:px-8">
+      <div className="flex-1 flex justify-center">
+        <Link href={`/pokemon/${getPreviousId()}`}>
+          <Button disabled={currentId === 1}>Previous</Button>
+        </Link>
+      </div>
+      <div className="flex-1 flex justify-center">
+        <Link href={`/`}>
+          <Button>Go back</Button>
+        </Link>
+      </div>
+      <div className="flex-1 flex justify-center">
+        <Link href={`/pokemon/${getNextId()}`}>
+          <Button disabled={currentId === maxId}>Next</Button>
+        </Link>
+      </div>
     </div>
   );
 }

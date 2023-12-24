@@ -9,6 +9,7 @@ export default function Loader() {
         height={200}
         alt="Pikachu loading"
         priority
+        className="h-auto w-full"
       />
       <h3>Loading...</h3>
     </div>

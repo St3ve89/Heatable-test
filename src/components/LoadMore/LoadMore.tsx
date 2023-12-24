@@ -43,6 +43,7 @@ export default function LoadMore() {
               width={56}
               height={56}
               alt="Pikachu loading"
+              className="h-auto w-full"
               priority
             />
             <h3>Loading more pokemons...</h3>

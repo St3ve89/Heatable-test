@@ -8,7 +8,10 @@ interface PokemonItemProps {
 }
 
 export default function PokemonItem({ pokemon }: PokemonItemProps) {
-  const imageUrl = pokemon.sprites.other['official-artwork'].front_default;
+  const imageUrl =
+    pokemon.sprites.other['official-artwork'].front_default ||
+    pokemon.sprites.front_default ||
+    '/images/placeholder.png';
   return (
     <Link href={`/pokemon/${pokemon.id}`} passHref>
       <div className="flex flex-col items-center justify-center p-4 bg-white border border-gray-300 rounded-lg shadow-md cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg">
@@ -17,9 +20,9 @@ export default function PokemonItem({ pokemon }: PokemonItemProps) {
             <Image
               src={imageUrl}
               alt={`Image of ${pokemon.name}`}
-              width={156}
-              height={156}
+              fill
               className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
         )}

@@ -16,6 +16,13 @@ export default async function PokemonDetailPage({
 }: PokemonDetailPageProps) {
   const { id } = params;
   const pokemon = await fetchPokemonByNameOrId(id);
+  const imageUrl =
+    pokemon?.sprites.other['official-artwork'].front_default ||
+    pokemon?.sprites.front_default ||
+    '/images/placeholder.png';
+
+  console.log('imageUrl:', imageUrl);
+  console.log('imageUrl:', pokemon?.sprites);
   let background;
 
   if (!pokemon) {
@@ -43,20 +50,15 @@ export default async function PokemonDetailPage({
       style={{ background }}
     >
       <PokemonNavigation currentId={+id} />
-      <div className="p-4 mx-auto bg-gray-200 rounded-lg shadow-md lg:p-8 border border-black">
+      <div className="p-4 bg-gray-200 rounded-lg shadow-md border border-black max-w-[250px] w-full sm:max-w-none sm:w-auto">
         <div className="flex flex-col items-center space-y-4">
-          <h1 className="text-2xl font-semibold capitalize text-center">
+          <h1 className="text-lg sm:text-md font-semibold capitalize text-center">
             {pokemon?.name}
           </h1>
         </div>
 
-        {pokemon?.sprites?.other['official-artwork'].front_default && (
-          <Image
-            src={pokemon?.sprites?.other['official-artwork'].front_default}
-            alt={pokemon?.name}
-            width={256}
-            height={256}
-          />
+        {imageUrl && (
+          <Image src={imageUrl} alt={pokemon?.name} width={256} height={256} />
         )}
 
         <div className="flex items-center justify-center mt-2 gap-1">
@@ -65,24 +67,33 @@ export default async function PokemonDetailPage({
           ))}
         </div>
 
-        <div className="flex flex-row justify-center items-start space-x-6 mt-4">
-          <div className="flex flex-col items-center">
-            <h2 className="text-lg font-semibold text-gray-600 mb-2">Height</h2>
-            <p className="text-sm">{pokemon?.height! / 10}m</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <h2 className="text-lg font-semibold text-gray-600 mb-2">Weight</h2>
-            <p className="text-sm">{pokemon?.weight! / 10}kg</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <h2 className="text-lg font-semibold text-gray-600 mb-2">
-              Abilities
-            </h2>
-            {pokemon?.abilities.map((item, index) => (
-              <p key={index} className="text-sm capitalize">
-                {item.ability.name.replace('-', ' ')}
-              </p>
-            ))}
+        <div className="flex flex-col md:flex-row justify-center items-start mt-4 w-full">
+          <div className="flex flex-row justify-center items-start space-x-6 mt-4">
+            <div className="flex flex-col items-center">
+              <h2 className="text-sm sm:text-lg font-semibold text-gray-600 mb-2 sm:text-md">
+                Height
+              </h2>
+              <p className="text-xs sm:text-sm">{pokemon?.height! / 10}m</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <h2 className="text-sm sm:text-lg font-semibold text-gray-600 mb-2 sm:text-md">
+                Weight
+              </h2>
+              <p className="text-xs sm:text-sm">{pokemon?.weight! / 10}kg</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <h2 className="text-sm sm:text-lg font-semibold text-gray-600 mb-2">
+                Abilities
+              </h2>
+              {pokemon?.abilities.map((item, index) => (
+                <p
+                  key={index}
+                  className="text-xs sm:text-sm capitalize  sm:break-normal"
+                >
+                  {item.ability.name.replace('-', ' ')}
+                </p>
+              ))}
+            </div>
           </div>
         </div>
 

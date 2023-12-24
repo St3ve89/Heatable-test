@@ -63,6 +63,7 @@ export const fetchPokemonByNameOrId = async (
                 pokemonData.sprites.other['official-artwork'].front_default,
             },
           },
+          front_default: pokemonData.sprites.front_default,
         },
         types: pokemonData.types.map((t) => ({
           type: { name: t.type.name },

@@ -16,13 +16,14 @@ export default function PokemonItem({ pokemon }: PokemonItemProps) {
     <Link href={`/pokemon/${pokemon.id}`} passHref>
       <div className="flex flex-col items-center justify-center p-4 bg-white border border-gray-300 rounded-lg shadow-md cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg">
         {imageUrl && (
-          <div className="relative w-24 h-24">
+          <div className="relative w-24 h-24 overflow-hidden">
             <Image
               src={imageUrl}
               alt={`Image of ${pokemon.name}`}
               width={156}
               height={156}
               className="object-cover"
+              unoptimized
             />
           </div>
         )}

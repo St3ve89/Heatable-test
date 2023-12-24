@@ -55,9 +55,15 @@ export default async function PokemonDetailPage({
           </h1>
         </div>
 
-        {imageUrl && (
-          <Image src={imageUrl} alt={pokemon?.name} width={256} height={256} />
-        )}
+        <div className="flex justify-center items-center w-full">
+          <Image
+            src={imageUrl}
+            alt={pokemon?.name}
+            width={256}
+            height={256}
+            unoptimized
+          />
+        </div>
 
         <div className="flex items-center justify-center mt-2 gap-1">
           {pokemon?.types.map((type, index) => (

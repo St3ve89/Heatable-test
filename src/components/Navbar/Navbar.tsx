@@ -11,9 +11,9 @@ export default function Navbar() {
                 src="/images/pokedex.png"
                 width={160}
                 height={60}
-                className="h-auto w-full"
                 alt="Pokédex logo"
                 priority
+                unoptimized
               />
             </div>
           </a>

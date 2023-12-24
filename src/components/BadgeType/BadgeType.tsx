@@ -15,6 +15,7 @@ export default function BadgeType({ type }: BadgeTypeProps) {
         width={32}
         height={32}
         alt={`Type ${type}`}
+        unoptimized
       />
       <span
         className={`px-4 py-2 text-white rounded-md capitalize text-sm`}

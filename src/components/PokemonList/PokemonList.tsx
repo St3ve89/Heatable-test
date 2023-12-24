@@ -23,6 +23,7 @@ export default async function PokemonList({ query }: PokemonListProps) {
           height={200}
           alt="Psyduck confused"
           priority
+          unoptimized
         />
       </div>
     );

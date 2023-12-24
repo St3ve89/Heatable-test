@@ -17,6 +17,7 @@ export default function PageNotFound() {
           height={200}
           alt="Psyduck confused"
           priority
+          unoptimized
         />
 
         <a href="/" aria-label="Go to Home">

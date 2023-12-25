@@ -2,6 +2,7 @@ import { Pokemon } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import BadgeType from '../BadgeType/BadgeType';
+import { getColorsByPokemonType } from '@/utils';
 
 interface PokemonItemProps {
   pokemon: Pokemon;
@@ -12,11 +13,23 @@ export default function PokemonItem({ pokemon }: PokemonItemProps) {
     pokemon.sprites.other['official-artwork'].front_default ||
     pokemon.sprites.front_default ||
     '/images/placeholder.png';
+
+  const type = pokemon.types[0].type.name;
+  const bgColor = getColorsByPokemonType(type).backgroundColor;
   return (
     <Link href={`/pokemon/${pokemon.id}`} passHref>
-      <div className="flex flex-col items-center justify-center p-4 bg-white border border-gray-300 rounded-lg shadow-md cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg">
+      <div
+        style={{ backgroundColor: bgColor }}
+        className="flex flex-col items-center justify-center p-4 bg-white border border-gray-300 rounded-2xl shadow-md cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"
+      >
         {imageUrl && (
-          <div className="relative w-24 h-24 overflow-hidden">
+          <div
+            className={`w-24 h-24 ${
+              imageUrl === '/images/placeholder.png'
+                ? 'flex items-center justify-center overflow-hidden'
+                : ''
+            }`}
+          >
             <Image
               src={imageUrl}
               alt={`Image of ${pokemon.name}`}
@@ -27,7 +40,7 @@ export default function PokemonItem({ pokemon }: PokemonItemProps) {
             />
           </div>
         )}
-        <span className="text-gray-500 text-sm">#{pokemon.id}</span>
+        <span className="text-white text-sm">#{pokemon.id}</span>
         <h2 className="mt-2 text-lg font-bold capitalize">{pokemon.name}</h2>
         <div className="flex items-center justify-center mt-2 gap-1">
           {pokemon.types.map((type, index) => (

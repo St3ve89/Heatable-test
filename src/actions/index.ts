@@ -2,13 +2,13 @@
 
 import { Pokemon } from '@/types';
 
-export const fetchPokemons = async ({
+export async function fetchPokemons({
   query,
   url,
 }: {
   query?: string;
   url?: string;
-}): Promise<{ pokemons: (Pokemon | null)[]; nextUrl: string | null }> => {
+}): Promise<{ pokemons: (Pokemon | null)[]; nextUrl: string | null }> {
   if (!query) {
     const endpoint =
       url || 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=24';
@@ -39,11 +39,11 @@ export const fetchPokemons = async ({
     console.error(`Error fetching details for pokemon ${query}:`, error);
     return { pokemons: [], nextUrl: null };
   }
-};
+}
 
-export const fetchPokemonByNameOrId = async (
+export async function fetchPokemonByNameOrId(
   pokemonName: string
-): Promise<Pokemon | null> => {
+): Promise<Pokemon | null> {
   try {
     const pokemonResponse = await fetch(
       `https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}/`
@@ -65,13 +65,13 @@ export const fetchPokemonByNameOrId = async (
           },
           front_default: pokemonData.sprites.front_default,
         },
-        types: pokemonData.types.map((t) => ({
-          type: { name: t.type.name },
+        types: pokemonData.types.map((type) => ({
+          type: { name: type.type.name },
         })),
-        stats: pokemonData.stats.map((stats) => ({
-          base_stat: stats.base_stat,
+        stats: pokemonData.stats.map((stat) => ({
+          base_stat: stat.base_stat,
           stat: {
-            name: stats.stat.name,
+            name: stat.stat.name,
           },
         })),
         abilities: pokemonData.abilities.map((ability) => ({
@@ -89,4 +89,4 @@ export const fetchPokemonByNameOrId = async (
     console.error(`Error fetching details for pokemon ${pokemonName}:`, error);
     return null;
   }
-};
+}

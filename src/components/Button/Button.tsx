@@ -16,7 +16,7 @@ export default function Button({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`disabled:opacity-50 inline-block text-center text-white bg-blue-600 border-2 border-yellow-400 rounded px-5 py-3 transition duration-300 ease-in-out ${
+      className={`disabled:opacity-50 inline-block text-center text-white bg-blue-600 border-2 border-yellow-400 rounded-md  px-5 py-3 transition duration-300 ease-in-out ${
         disabled ? 'cursor-not-allowed' : ''
       }`}
     >

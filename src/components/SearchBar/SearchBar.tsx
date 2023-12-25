@@ -70,7 +70,14 @@ export default function SearchBar({ search }: SearchBarProps) {
           🔍
         </button>
       </div>
-      {search && <Button onClick={handleBackClick}>Go back to all</Button>}
+      {search && (
+        <div
+          className="justify-center text-white flex items-center w-28 h-12 bg-blue-500 rounded-full"
+          onClick={handleBackClick}
+        >
+          Go back
+        </div>
+      )}
     </div>
   );
 }

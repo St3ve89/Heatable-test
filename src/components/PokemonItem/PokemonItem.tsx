@@ -40,7 +40,7 @@ export default function PokemonItem({ pokemon }: PokemonItemProps) {
             />
           </div>
         )}
-        <span className="text-white text-sm">#{pokemon.id}</span>
+        <span className="text-black text-sm">#{pokemon.id}</span>
         <h2 className="mt-2 text-lg font-bold capitalize">{pokemon.name}</h2>
         <div className="flex items-center justify-center mt-2 gap-1">
           {pokemon.types.map((type, index) => (

@@ -54,7 +54,7 @@ export default async function PokemonDetailCard({
   ];
 
   return (
-    <div className="rounded-xl overflow-hidden shadow-lg  sm:w-[400px] md:max-w-md lg:max-w-sm md:w-3/4 lg:w-1/2 mx-8 sm:mx-0">
+    <div className="rounded-xl overflow-hidden shadow-2xl border border-black w-full sm:min-w-[311px] sm:w-[400px] md:max-w-md lg:max-w-lg mx-8 sm:mx-0">
       <div className="p-8 shadow-md" style={{ background: pokemonTypeColor }}>
         <div className="flex justify-between">
           <div className="flex flex-col  justify-center  gap-1">

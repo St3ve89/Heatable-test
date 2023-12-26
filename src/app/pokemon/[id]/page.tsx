@@ -1,8 +1,10 @@
 import { fetchPokemonByNameOrId } from '@/actions';
+import Loader from '@/components/Loader/Loader';
 import PokemonDetailCard from '@/components/PokemonDetailCard/PokemonDetailCard';
 import PokemonNavigation from '@/components/PokemonNavigation/PokemonNavigation';
 import { getColorsByPokemonType } from '@/utils';
 import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
 
 interface PokemonDetailPageProps {
   params: {
@@ -38,11 +40,20 @@ export default async function PokemonDetailPage({
 
   return (
     <div
-      className="flex items-center justify-center min-h-screen flex-col"
+      className="flex items-center min-h-screen flex-col p-8"
       style={{ background }}
     >
       <PokemonNavigation currentId={+id} />
-      <PokemonDetailCard pokemon={pokemon} />
+      <Suspense
+        fallback={
+          <div className="w-full h-[600px]">
+            <Loader />
+          </div>
+        }
+        key={id}
+      >
+        <PokemonDetailCard pokemon={pokemon} />
+      </Suspense>
     </div>
   );
 }

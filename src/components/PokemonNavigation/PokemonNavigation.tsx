@@ -22,12 +22,12 @@ export default function PokemonNavigation({
   };
 
   return (
-    <div className="flex justify-between items-center w-full p-4 md:px-6 lg:px-8">
+    <div className="flex justify-center items-center w-full p-4 md:px-6 lg:px-8 gap-10">
       <Link href={`/pokemon/${getPreviousId()}`}>
         <div
           className={`flex-1 justify-center ${
             currentId === 1 ? 'text-gray-400 cursor-not-allowed' : 'text-white'
-          } flex items-center w-28 h-12 bg-blue-500 rounded-full `}
+          } flex items-center w-12 h-12 bg-blue-500 rounded-full `}
         >
           <svg
             className="w-full h-6"
@@ -56,7 +56,7 @@ export default function PokemonNavigation({
             currentId === maxId
               ? 'text-gray-400 cursor-not-allowed'
               : 'text-white'
-          } flex items-center w-28 h-12 bg-blue-500 rounded-full `}
+          } flex items-center w-12 h-12 bg-blue-500 rounded-full `}
         >
           <svg
             className="w-full h-6"

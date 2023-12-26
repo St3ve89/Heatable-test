@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Button from '../Button/Button';
 
 interface SearchBarProps {
   search?: string;

@@ -1,6 +1,6 @@
 'use server';
 
-import { Pokemon } from '@/types';
+import { Move, MoveDetail, Pokemon, PokemonSpecies, TextEntry } from '@/types';
 
 export async function fetchPokemons({
   query,
@@ -56,6 +56,7 @@ export async function fetchPokemonByNameOrId(
         name: pokemonData.name,
         height: pokemonData.height,
         weight: pokemonData.weight,
+        moves: pokemonData.moves,
         sprites: {
           other: {
             'official-artwork': {
@@ -89,4 +90,49 @@ export async function fetchPokemonByNameOrId(
     console.error(`Error fetching details for pokemon ${pokemonName}:`, error);
     return null;
   }
+}
+
+function filterText(array: TextEntry[]) {
+  const textEntry = array.find((entry) => entry.language.name === 'en');
+  return textEntry ? textEntry.flavor_text || textEntry.genus : undefined;
+}
+
+export async function fetchPokemonSpeciesByNameOrId(
+  pokemonNameOrId: string
+): Promise<PokemonSpecies | null> {
+  try {
+    const res = await fetch(
+      `https://pokeapi.co/api/v2/pokemon-species/${pokemonNameOrId.toLowerCase()}`
+    );
+    const speciesData = await res.json();
+
+    const flavorTextEnglish = filterText(speciesData.flavor_text_entries);
+    const speciesTextEnglish = filterText(speciesData.genera);
+
+    return {
+      flavor_text: flavorTextEnglish,
+      species: speciesTextEnglish,
+    };
+  } catch (error) {
+    console.error(
+      `Error fetching species details for pokemon ${pokemonNameOrId}:`,
+      error
+    );
+    return null;
+  }
+}
+
+export async function fetchMoveDetails(moves: Move[]): Promise<MoveDetail[]> {
+  if (!moves) {
+    return [];
+  }
+
+  const movesPromises = moves.map((move) =>
+    fetch(move.url).then((res) => res.json())
+  );
+  const movesDetails = await Promise.all(movesPromises);
+  return movesDetails.map((moveDetail) => ({
+    name: moveDetail.name,
+    type: moveDetail.type.name,
+  }));
 }

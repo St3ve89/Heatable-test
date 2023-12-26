@@ -19,6 +19,12 @@ export interface Pokemon {
   };
   abilities: Ability[];
   stats: Stat[];
+  moves: {
+    move: {
+      name: string;
+      url: string;
+    };
+  }[];
 }
 
 interface Ability {
@@ -35,4 +41,27 @@ interface Stat {
   stat: {
     name: string;
   };
+}
+
+export interface TextEntry {
+  flavor_text: string;
+  genus?: string;
+  language: {
+    name: string;
+  };
+}
+
+export interface PokemonSpecies {
+  flavor_text: string | undefined;
+  species: string | undefined;
+}
+
+export interface Move {
+  name: string;
+  url: string;
+}
+
+export interface MoveDetail {
+  name: string;
+  type: string;
 }

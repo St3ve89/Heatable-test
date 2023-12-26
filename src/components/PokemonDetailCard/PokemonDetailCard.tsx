@@ -5,12 +5,16 @@ import { getColorsByPokemonType } from '@/utils';
 import PokemonDetailTabs from '../PokemonDetailTabs/PokemonDetailTabs';
 import PokemonDetailsTabContentStats from '../PokemonDetailTabs/PokemonDetailsTabContent/PokemonDetailsTabContentStats';
 import PokemonDetailsTabContentAbout from '../PokemonDetailTabs/PokemonDetailsTabContent/PokemonDetailsTabContentAbout';
+import { fetchMoveDetails, fetchPokemonSpeciesByNameOrId } from '@/actions';
+import PokemonDetailsTabContentMoves from '../PokemonDetailTabs/PokemonDetailsTabContent/PokemonDetailsTabContentMoves';
 
 interface PokemonDetailCardProps {
   pokemon: Pokemon;
 }
 
-export default function PokemonDetailCard({ pokemon }: PokemonDetailCardProps) {
+export default async function PokemonDetailCard({
+  pokemon,
+}: PokemonDetailCardProps) {
   const imageUrl =
     pokemon?.sprites.other['official-artwork'].front_default ||
     pokemon?.sprites.front_default ||
@@ -20,14 +24,32 @@ export default function PokemonDetailCard({ pokemon }: PokemonDetailCardProps) {
     ? getColorsByPokemonType(pokemon.types[0].type.name).background
     : 'linear-gradient(180deg, #fff 50%, #fff 50%)';
 
+  const formattedMoves =
+    pokemon?.moves?.map((moveItem) => ({
+      name: moveItem.move.name,
+      url: moveItem.move.url,
+    })) || [];
+
+  const pokemonMoves = await fetchMoveDetails(formattedMoves);
+  const pokemonSpecies = await fetchPokemonSpeciesByNameOrId(pokemon.id);
+
   const tabData = [
     {
       label: 'About',
-      content: <PokemonDetailsTabContentAbout pokemon={pokemon} />,
+      content: (
+        <PokemonDetailsTabContentAbout
+          pokemon={pokemon}
+          pokemonSpecies={pokemonSpecies}
+        />
+      ),
     },
     {
       label: 'Base Stats',
       content: <PokemonDetailsTabContentStats pokemon={pokemon} />,
+    },
+    {
+      label: 'Moves',
+      content: <PokemonDetailsTabContentMoves pokemonMoves={pokemonMoves} />,
     },
   ];
 

@@ -12,7 +12,7 @@ export default function PokemonDetailTabs({ tabs }: PokemonDetailTabsProps) {
   const [activeTab, setActiveTab] = useState<string>(tabs[0].label);
 
   return (
-    <div className="bg-white p-8 rounded-t-lg mt-[-10px] overflow-auto h-[270px]">
+    <div className="bg-white p-8 rounded-t-lg mt-[-10px] overflow-auto h-[290px]">
       <div className="flex justify-between space-x-2 overflow-x-auto">
         {tabs.map((tab) => (
           <button
